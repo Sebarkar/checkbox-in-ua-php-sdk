@@ -17,8 +17,12 @@ class SellReceiptMapper
     {
         $delivery = [];
 
-        if (!empty($receipt->deliveryEmail)) {
-            $delivery['email'] = $receipt->deliveryEmail;
+        if ($receipt->deliveryData) {
+            foreach ($receipt->deliveryData as $string) {
+                if ($string) {
+                    $delivery[$this->isEmail($string) ? 'email' : 'phone'] = $string;
+                }
+            }
         }
 
         $output = [
@@ -38,5 +42,9 @@ class SellReceiptMapper
         }
 
         return $output;
+    }
+
+    private function isEmail(string $string) {
+        return str_contains($string, '@');
     }
 }
