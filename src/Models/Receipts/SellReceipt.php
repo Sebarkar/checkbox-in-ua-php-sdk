@@ -15,7 +15,7 @@ class SellReceipt
     /** @var Goods $goods */
     public $goods;
     /** @var array $deliveryData */
-    public $deliveryData;
+    public array $deliveryData;
     /** @var Discounts|null $discounts */
     public $discounts;
     /** @var Payments $payments */
